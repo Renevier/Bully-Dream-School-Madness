@@ -12,12 +12,14 @@ public class CharacterController : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] float health = 0f;
+    [SerializeField] float damage = 0f;
     [SerializeField] float speed = 0f;
     [SerializeField] float jumpForce = 0f;
     [SerializeField] LayerMask groundLayer;
 
     PlayerInput playerInput;
 
+    float maxHealth = 10;
     Vector3 movement;
     bool isJumping = false;
     bool isAttacking = false;
@@ -43,7 +45,7 @@ public class CharacterController : MonoBehaviour
 
     void Start()
     {
-
+        health = maxHealth;
     }
 
     void Update()
