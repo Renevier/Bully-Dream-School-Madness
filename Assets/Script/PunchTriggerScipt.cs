@@ -8,9 +8,10 @@ public class PunchTriggerScipt : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Enemies"))
+        if(other.gameObject.CompareTag("Enemy"))
         {
-
+            Enemy enemyGo = other.gameObject.GetComponent<Enemy>();
+            enemyGo.TakeDamage(player.damage);
         }
     }
 }

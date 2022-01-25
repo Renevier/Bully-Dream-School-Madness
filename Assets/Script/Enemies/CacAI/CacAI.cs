@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CacAI : MonoBehaviour
+public class CacAI : Enemy
 {
     private CacAIBaseState currentState;
 
@@ -21,14 +21,16 @@ public class CacAI : MonoBehaviour
         deathState = new CacAIDeathState();
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         currentState = idleState;
 
         currentState.EnterState(this);
     }
 
-    private void Update()
+    protected override void Update()
     {
         currentState.UpdateState(this);
     }

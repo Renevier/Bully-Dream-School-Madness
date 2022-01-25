@@ -12,7 +12,7 @@ public class CharacterController : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] float health = 0f;
-    [SerializeField] float damage = 0f;
+    public float damage = 0f;
     [SerializeField] float speed = 0f;
     [SerializeField] float jumpForce = 0f;
     [SerializeField] LayerMask groundLayer;
