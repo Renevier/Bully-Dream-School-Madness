@@ -17,6 +17,9 @@ public class CharacterController : MonoBehaviour
     [SerializeField] float jumpForce = 0f;
     [SerializeField] LayerMask groundLayer;
 
+    [SerializeField] private GameObject fistGo;
+    [SerializeField] private AnimationClip clip;
+
     PlayerInput playerInput;
 
     float maxHealth = 10;
@@ -32,10 +35,8 @@ public class CharacterController : MonoBehaviour
         playerInput.player.Movement.canceled += OnMove;
 
         playerInput.player.Jump.performed += OnJump;
-        playerInput.player.Jump.canceled += OnJump;
 
         playerInput.player.Punch.performed += OnPunch;
-        playerInput.player.Punch.canceled += OnPunch;
     }
 
     private void OnEnable()
@@ -50,7 +51,6 @@ public class CharacterController : MonoBehaviour
 
     void Update()
     {
-
     }
 
     private void FixedUpdate()
@@ -72,7 +72,10 @@ public class CharacterController : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext ctx)
     {
-        isJumping = ctx.ReadValueAsButton();
+        if(IsGrounded())
+          isJumping = true;
+
+        //fistGo.SetActive(isJumping);
 
         if (IsGrounded() && isJumping)
         {
@@ -82,13 +85,18 @@ public class CharacterController : MonoBehaviour
         else
             anim.SetBool("isJumping", false);
 
+        StartCoroutine(AnimCor("isJumping"));
+
     }
 
     private void OnPunch(InputAction.CallbackContext ctx)
     {
-        isAttacking = ctx.ReadValueAsButton();
+        isAttacking = true;
 
+        fistGo.SetActive(isAttacking);
         anim.SetBool("isAttacking", isAttacking);
+
+        StartCoroutine(AnimCor("Punch"));
 
     }
 
@@ -104,4 +112,23 @@ public class CharacterController : MonoBehaviour
         //play hurt anim
     }
 
+    IEnumerator AnimCor(string _action)
+    {
+        yield return null;
+        AnimatorStateInfo animatorStateInfo = anim.GetNextAnimatorStateInfo(0);
+        yield return new WaitForSeconds(animatorStateInfo.length - Time.deltaTime);
+
+        if (_action == "Punch")
+        {
+            isAttacking = false;
+            anim.SetBool("isAttacking", isAttacking);
+            fistGo.SetActive(isAttacking);
+        }
+        else if(_action == "isJumping")
+        {
+            isJumping = false;
+            anim.SetBool("isJumping", isJumping);
+            //fistGo.SetActive(isJumping);
+        }
+    }
 }
