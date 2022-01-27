@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CacAIAttackState : AIBaseState
+public class AIIdleState : AIBaseState
 {
     public override void EnterState(Enemy AI)
     {
-        throw new System.NotImplementedException();
+        //AI.GetAnim().SetBool("", false);
     }
 
     public override void UpdateState(Enemy AI)
     {
-        throw new System.NotImplementedException();
+
     }
 }

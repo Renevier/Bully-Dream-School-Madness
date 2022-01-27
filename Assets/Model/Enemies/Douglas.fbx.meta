@@ -31,102 +31,102 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Body_Diffuse
-    second: {fileID: 2800000, guid: 027197cd8455dae428f5f49b4212575a, type: 3}
+    second: {fileID: 2800000, guid: 06bcc5deb4e671a4bbec114fc30a9502, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Body_Gloss
-    second: {fileID: 2800000, guid: 7f7b75d7cf277e44082b6da5bd2eadb4, type: 3}
+    second: {fileID: 2800000, guid: bb575080c4a3596468d678f2f33ce022, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Body_Normal
-    second: {fileID: 2800000, guid: f48bfe1ce4dbf1f40a5c5c4ff829671d, type: 3}
+    second: {fileID: 2800000, guid: 2f0ff1dd80e120946ada421d6083b5ff, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Body_Opacity
-    second: {fileID: 2800000, guid: b467b567d2c6f904eb1878ec10227892, type: 3}
+    second: {fileID: 2800000, guid: ad72ab2abcdbfe44dbece343b4c4a682, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Body_Specular
-    second: {fileID: 2800000, guid: 68c96252b7dd2e24f9df51ea6b412cc3, type: 3}
+    second: {fileID: 2800000, guid: eb110d8c6190f6647bb5499c6269ed44, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Bottom_Diffuse
-    second: {fileID: 2800000, guid: d119d5d5f7bfea24bb096b8a0478aa5e, type: 3}
+    second: {fileID: 2800000, guid: 2d58dfb0edfb34946a48b5db0b59283b, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Bottom_Gloss
-    second: {fileID: 2800000, guid: 3fe88134b67935e419598c1c58ba8a65, type: 3}
+    second: {fileID: 2800000, guid: e59b7087ac492bc4a9bb52fd94536b1b, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Bottom_Normal
-    second: {fileID: 2800000, guid: 2a421b8b60231e34a8794b5d3e34bfcf, type: 3}
+    second: {fileID: 2800000, guid: d2b994696ed800e418cc3553080c8694, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Bottom_Opacity
-    second: {fileID: 2800000, guid: c0c628ae5c0979743bdb30eba5cec692, type: 3}
+    second: {fileID: 2800000, guid: 1ce55c73d8fd3964994c5828f526f44d, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Bottom_Specular
-    second: {fileID: 2800000, guid: 331bfb2a5dc99af48b11da465bc0bd4b, type: 3}
+    second: {fileID: 2800000, guid: fabb5ca7ab4bac94483fb697b9c9d571, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Shoes_Diffuse
-    second: {fileID: 2800000, guid: 9d51a0f5387167f44998dc41dab3a24a, type: 3}
+    second: {fileID: 2800000, guid: 2f94b6e0ab679604eb2273a03acca3b3, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Shoes_Gloss
-    second: {fileID: 2800000, guid: 247ca6a4c16da3544ba1ff6af583b600, type: 3}
+    second: {fileID: 2800000, guid: 448033db9674c1d4dafe17a14fd09ed3, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Shoes_Normal
-    second: {fileID: 2800000, guid: c3ae6cade7c590644aac4fa5dcc12432, type: 3}
+    second: {fileID: 2800000, guid: 63a253bc836e95646afa726d9112c04c, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Shoes_Opacity
-    second: {fileID: 2800000, guid: e46ae40492a590442ae8d147f26d2082, type: 3}
+    second: {fileID: 2800000, guid: d63132daa58259442b2a6997cf0b920a, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Shoes_Specular
-    second: {fileID: 2800000, guid: 50e3f032d9e4a334cbdf6961fe92fc94, type: 3}
+    second: {fileID: 2800000, guid: 4912c6731c888c44a83873faa8892fa9, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Top_Diffuse
-    second: {fileID: 2800000, guid: c734a96450e9192438548d8f5193aacb, type: 3}
+    second: {fileID: 2800000, guid: da1ad07201d314b43b9c5489842382ce, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Top_Gloss
-    second: {fileID: 2800000, guid: f775c40b2ff89824f92d974e1de40129, type: 3}
+    second: {fileID: 2800000, guid: 97181b1d852c03a4d91b4834097073a0, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Top_Normal
-    second: {fileID: 2800000, guid: 3fce9185e00de6b4e9b5cc44971c7058, type: 3}
+    second: {fileID: 2800000, guid: 5558c8c33b57ab4448e87d746918f6aa, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Top_Opacity
-    second: {fileID: 2800000, guid: 8e8f363b041ae7643b17c51f878c1620, type: 3}
+    second: {fileID: 2800000, guid: 4087309c6a77fde43ad20d34af6d6031, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Douglas_Top_Specular
-    second: {fileID: 2800000, guid: 919b45dcbaad73545beee5ef55062ff5, type: 3}
+    second: {fileID: 2800000, guid: 804a250d42af3934e9456633b534949c, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

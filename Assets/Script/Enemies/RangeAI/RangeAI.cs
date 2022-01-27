@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CacAI : Enemy
+public class RangeAI : Enemy
 {
-    private AIBaseState currentState;
+    AIBaseState currentState;
 
     public AIIdleState idleState { get; set; }
     public AIPatrolState patrolState { get; set; }
     public AIFollowState followState { get; set; }
-    public CacAIAttackState attackStateState { get; set; }
+    public RangeAIAttackState attackStateState { get; set; }
     public AIDeathState deathState { get; set; }
 
-    private CacAI()
+    private void Awake()
     {
         idleState = new AIIdleState();
         patrolState = new AIPatrolState();
         followState = new AIFollowState();
-        attackStateState = new CacAIAttackState();
+        attackStateState = new RangeAIAttackState();
         deathState = new AIDeathState();
     }
 

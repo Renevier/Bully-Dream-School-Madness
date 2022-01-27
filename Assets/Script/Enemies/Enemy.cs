@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private Animator anim;
     [SerializeField] private EnemyData ed;
 
     private float currentHealth;
@@ -21,5 +22,10 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+    }
+
+    public Animator GetAnim()
+    {
+        return anim;
     }
 }

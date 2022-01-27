@@ -18,7 +18,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
 
     [SerializeField] private GameObject fistGo;
-    [SerializeField] private AnimationClip clip;
+    [SerializeField] private GameObject kickGo;
 
     PlayerInput playerInput;
 
@@ -35,6 +35,7 @@ public class CharacterController : MonoBehaviour
         playerInput.player.Movement.canceled += OnMove;
 
         playerInput.player.Jump.performed += OnJump;
+        playerInput.player.Jump.canceled += OnJump;
 
         playerInput.player.Punch.performed += OnPunch;
     }
@@ -72,21 +73,16 @@ public class CharacterController : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext ctx)
     {
-        if(IsGrounded())
-          isJumping = true;
+        isJumping = ctx.ReadValueAsButton(); ;
 
-        //fistGo.SetActive(isJumping);
+        kickGo.SetActive(isJumping);
 
         if (IsGrounded() && isJumping)
         {
-            rb.AddForce(Vector3.up * jumpForce);
             anim.SetBool("isJumping", true);
+            rb.AddForce(Vector3.up * jumpForce);
+            StartCoroutine(AnimCor("isJumping"));
         }
-        else
-            anim.SetBool("isJumping", false);
-
-        StartCoroutine(AnimCor("isJumping"));
-
     }
 
     private void OnPunch(InputAction.CallbackContext ctx)
@@ -124,11 +120,10 @@ public class CharacterController : MonoBehaviour
             anim.SetBool("isAttacking", isAttacking);
             fistGo.SetActive(isAttacking);
         }
-        else if(_action == "isJumping")
+        else if (_action == "isJumping")
         {
-            isJumping = false;
-            anim.SetBool("isJumping", isJumping);
-            //fistGo.SetActive(isJumping);
+            anim.SetBool("isJumping", false);
+            kickGo.SetActive(isJumping);
         }
     }
 }

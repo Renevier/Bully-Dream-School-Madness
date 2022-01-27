@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3576013360342884151}
   - component: {fileID: 5761496664350601138}
   - component: {fileID: 3556456864129347978}
+  - component: {fileID: 7316493104903214091}
   m_Layer: 0
   m_Name: Granny
   m_TagString: Untagged
@@ -56,6 +57,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7316493104903214091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725432206896829793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12b616d896f7b645bbb0f678cc9adb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 7560118601557412682}
+  ed: {fileID: 11400000, guid: 94b8140cab6ecf5408c1db980b4ddf59, type: 2}
 --- !u!1001 &4143446321088935643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -127,12 +142,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 8e3d28de10c4a7548941d266caf221b4, type: 2}
+      objectReference: {fileID: 9100000, guid: 682bbd67cbffba5439ffea5923f379b4, type: 2}
+    - target: {fileID: 5866666021909216657, guid: f03878389335ee149bf69b1ac3323d15,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f03878389335ee149bf69b1ac3323d15, type: 3}
 --- !u!4 &4470600004697510192 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f03878389335ee149bf69b1ac3323d15,
+    type: 3}
+  m_PrefabInstance: {fileID: 4143446321088935643}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7560118601557412682 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: f03878389335ee149bf69b1ac3323d15,
     type: 3}
   m_PrefabInstance: {fileID: 4143446321088935643}
   m_PrefabAsset: {fileID: 0}
