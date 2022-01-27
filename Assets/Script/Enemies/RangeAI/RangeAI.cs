@@ -9,7 +9,8 @@ public class RangeAI : Enemy
     public AIIdleState idleState { get; set; }
     public AIPatrolState patrolState { get; set; }
     public AIFollowState followState { get; set; }
-    public RangeAIAttackState attackStateState { get; set; }
+    public RangeAIAttackState attackState { get; set; }
+    public AIHurtState hurtState { get; set; }
     public AIDeathState deathState { get; set; }
 
     private void Awake()
@@ -17,7 +18,8 @@ public class RangeAI : Enemy
         idleState = new AIIdleState();
         patrolState = new AIPatrolState();
         followState = new AIFollowState();
-        attackStateState = new RangeAIAttackState();
+        attackState = new RangeAIAttackState();
+        hurtState = new AIHurtState();
         deathState = new AIDeathState();
     }
 

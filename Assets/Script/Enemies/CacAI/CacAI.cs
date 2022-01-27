@@ -9,7 +9,8 @@ public class CacAI : Enemy
     public AIIdleState idleState { get; set; }
     public AIPatrolState patrolState { get; set; }
     public AIFollowState followState { get; set; }
-    public CacAIAttackState attackStateState { get; set; }
+    public CacAIAttackState attackState { get; set; }
+    public AIHurtState hurtState { get; set; }
     public AIDeathState deathState { get; set; }
 
     private CacAI()
@@ -17,7 +18,8 @@ public class CacAI : Enemy
         idleState = new AIIdleState();
         patrolState = new AIPatrolState();
         followState = new AIFollowState();
-        attackStateState = new CacAIAttackState();
+        attackState = new CacAIAttackState();
+        hurtState = new AIHurtState();
         deathState = new AIDeathState();
     }
 
