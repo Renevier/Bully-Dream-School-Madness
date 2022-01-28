@@ -114,6 +114,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: jasper
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 6ede00b74b5fdfc4aa4d1d0cc7a4e4ed,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ede00b74b5fdfc4aa4d1d0cc7a4e4ed, type: 3}
 --- !u!4 &7310637661478826741 stripped

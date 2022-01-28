@@ -53,6 +53,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Throw"",
+                    ""type"": ""Button"",
+                    ""id"": ""c0c084f8-8769-4c9d-970e-435f597510d3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -209,6 +218,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Punch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b9d1aa1-a495-4f48-97d9-77392f1bf8a0"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""09bde9d5-adce-4e73-be43-0e429c76d8e5"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -248,6 +279,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_player_Movement = m_player.FindAction("Movement", throwIfNotFound: true);
         m_player_Jump = m_player.FindAction("Jump", throwIfNotFound: true);
         m_player_Punch = m_player.FindAction("Punch", throwIfNotFound: true);
+        m_player_Throw = m_player.FindAction("Throw", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -310,6 +342,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_player_Movement;
     private readonly InputAction m_player_Jump;
     private readonly InputAction m_player_Punch;
+    private readonly InputAction m_player_Throw;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -317,6 +350,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_player_Movement;
         public InputAction @Jump => m_Wrapper.m_player_Jump;
         public InputAction @Punch => m_Wrapper.m_player_Punch;
+        public InputAction @Throw => m_Wrapper.m_player_Throw;
         public InputActionMap Get() { return m_Wrapper.m_player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -335,6 +369,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Punch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPunch;
                 @Punch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPunch;
                 @Punch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPunch;
+                @Throw.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrow;
+                @Throw.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrow;
+                @Throw.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnThrow;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -348,6 +385,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Punch.started += instance.OnPunch;
                 @Punch.performed += instance.OnPunch;
                 @Punch.canceled += instance.OnPunch;
+                @Throw.started += instance.OnThrow;
+                @Throw.performed += instance.OnThrow;
+                @Throw.canceled += instance.OnThrow;
             }
         }
     }
@@ -375,5 +415,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnPunch(InputAction.CallbackContext context);
+        void OnThrow(InputAction.CallbackContext context);
     }
 }

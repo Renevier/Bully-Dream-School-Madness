@@ -6,11 +6,16 @@ public class AIPatrolState : AIBaseState
 {
     public override void EnterState(Enemy AI)
     {
-        throw new System.NotImplementedException();
+        AI.GetAnim().SetBool("isMoving", true);
+        AI.GetAnim().SetBool("isPatrolling", true);
     }
 
     public override void UpdateState(Enemy AI)
     {
-        throw new System.NotImplementedException();
+        if (Vector3.Distance(AI.transform.position, AI.target.position) < AI.GetEnemyData().detectionDistance &&
+            Vector3.Distance(AI.transform.position, AI.target.position) > AI.GetEnemyData().attackDistance)
+            AI.SwitchState(AI.detectState);
+        else if (Vector3.Distance(AI.transform.position, AI.target.position) <= AI.GetEnemyData().attackDistance)
+            AI.SwitchState(AI.attackState);
     }
 }

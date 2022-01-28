@@ -26,6 +26,8 @@ public class CharacterController : MonoBehaviour
     Vector3 movement;
     bool isJumping = false;
     bool isAttacking = false;
+    bool isTouch = false;
+    bool isThrowing = false;
 
     private void Awake()
     {
@@ -38,7 +40,10 @@ public class CharacterController : MonoBehaviour
         playerInput.player.Jump.canceled += OnJump;
 
         playerInput.player.Punch.performed += OnPunch;
-    }
+
+        playerInput.player.Throw.performed += OnThrow;
+        playerInput.player.Throw.canceled += OnThrow;
+    }   
 
     private void OnEnable()
     {
@@ -96,6 +101,14 @@ public class CharacterController : MonoBehaviour
 
     }
 
+    private void OnThrow(InputAction.CallbackContext ctx)
+    {
+        isThrowing = ctx.ReadValueAsButton();
+        anim.SetBool("isThrowing", isThrowing);
+
+        StartCoroutine(AnimCor("isThrowing"));
+    }
+
     private bool IsGrounded()
     {
         return Physics.CheckCapsule(col.bounds.center, new Vector3(col.bounds.center.x, col.bounds.min.y, col.bounds.center.z), col.radius, groundLayer);
@@ -105,7 +118,9 @@ public class CharacterController : MonoBehaviour
     {
         health -= _damage;
 
-        //play hurt anim
+        isTouch = true;
+        anim.SetBool("isTouch", true);
+        StartCoroutine(AnimCor("isTouch"));
     }
 
     IEnumerator AnimCor(string _action)
@@ -117,13 +132,22 @@ public class CharacterController : MonoBehaviour
         if (_action == "Punch")
         {
             isAttacking = false;
-            anim.SetBool("isAttacking", isAttacking);
+            anim.SetBool("isAttacking", false);
             fistGo.SetActive(isAttacking);
         }
         else if (_action == "isJumping")
         {
             anim.SetBool("isJumping", false);
             kickGo.SetActive(isJumping);
+        }
+        else if( _action == "isTouch")
+        {
+            isTouch = false;
+            anim.SetBool("isTouch", false);
+        }
+        else if (_action == "isThrowing")
+        {
+            anim.SetBool("isThrowing", false);
         }
     }
 }

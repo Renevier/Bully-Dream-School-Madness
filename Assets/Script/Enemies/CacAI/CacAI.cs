@@ -4,43 +4,9 @@ using UnityEngine;
 
 public class CacAI : Enemy
 {
-    private AIBaseState currentState;
+    protected override void Awake() => base.Awake();
 
-    public AIIdleState idleState { get; set; }
-    public AIPatrolState patrolState { get; set; }
-    public AIFollowState followState { get; set; }
-    public CacAIAttackState attackState { get; set; }
-    public AIHurtState hurtState { get; set; }
-    public AIDeathState deathState { get; set; }
+    protected override void Start() => base.Start();
 
-    private CacAI()
-    {
-        idleState = new AIIdleState();
-        patrolState = new AIPatrolState();
-        followState = new AIFollowState();
-        attackState = new CacAIAttackState();
-        hurtState = new AIHurtState();
-        deathState = new AIDeathState();
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-
-        currentState = idleState;
-
-        currentState.EnterState(this);
-    }
-
-    protected override void Update()
-    {
-        currentState.UpdateState(this);
-    }
-
-    public void SwitchState(AIBaseState state)
-    {
-        currentState = state;
-
-        currentState.EnterState(this);
-    }
+    protected override void Update() => base.Update();
 }
