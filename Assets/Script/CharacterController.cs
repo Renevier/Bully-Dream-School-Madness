@@ -84,10 +84,13 @@ public class CharacterController : MonoBehaviour
 
         if (IsGrounded() && isJumping)
         {
-            anim.SetBool("isJumping", true);
             rb.AddForce(Vector3.up * jumpForce);
+
+            anim.SetBool("isJumping", true);
             StartCoroutine(AnimCor("isJumping"));
         }
+        else if(!IsGrounded())        
+            kickGo.SetActive(false);
     }
 
     private void OnPunch(InputAction.CallbackContext ctx)
@@ -138,7 +141,7 @@ public class CharacterController : MonoBehaviour
         else if (_action == "isJumping")
         {
             anim.SetBool("isJumping", false);
-            kickGo.SetActive(isJumping);
+            kickGo.SetActive(false);
         }
         else if( _action == "isTouch")
         {
