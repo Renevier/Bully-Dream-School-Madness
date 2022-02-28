@@ -17,14 +17,13 @@ public class CharacterController : MonoBehaviour
     [SerializeField] float jumpForce = 0f;
     [SerializeField] LayerMask groundLayer;
 
-    [SerializeField] private GameObject fistGo;
     [SerializeField] private GameObject kickGo;
+    [SerializeField] private GameObject proj;
 
     PlayerInput playerInput;
 
     float maxHealth = 10;
     Vector3 movement;
-    bool isJumping = false;
     bool isAttacking = false;
     bool isTouch = false;
     bool isThrowing = false;
@@ -54,14 +53,15 @@ public class CharacterController : MonoBehaviour
     {
         movement = new Vector3(ctx.ReadValue<Vector2>().x, 0, ctx.ReadValue<Vector2>().y);
 
-        anim.SetBool("isWalking", (movement == Vector3.zero ? false : true));
+        anim.SetBool("isWalking", movement == Vector3.zero ? false : true);
     }
 
     private void OnPunch(InputAction.CallbackContext ctx)
     {
         isAttacking = true;
 
-        fistGo.SetActive(isAttacking);
+        movement = Vector3.zero;
+
         anim.SetBool("isAttacking", isAttacking);
 
         StartCoroutine(AnimCor("Punch"));
@@ -91,22 +91,21 @@ public class CharacterController : MonoBehaviour
     {
         yield return null;
         AnimatorStateInfo animatorStateInfo = anim.GetNextAnimatorStateInfo(0);
-        yield return new WaitForSeconds(animatorStateInfo.length - Time.deltaTime);
+        yield return new WaitForSeconds(animatorStateInfo.length / 2 - Time.deltaTime);
 
         if (_action == "Punch")
         {
             isAttacking = false;
             anim.SetBool("isAttacking", false);
-            fistGo.SetActive(isAttacking);
         }
         else if (_action == "isTouch")
         {
             isTouch = false;
             anim.SetBool("isTouch", false);
         }
-        //else if (_action == "isThrowing")
-        //{
-        //    anim.SetBool("isThrowing", false);
-        //}
+        else if (_action == "isThrowing")
+        {
+            anim.SetBool("isThrowing", false);
+        }
     }
 }

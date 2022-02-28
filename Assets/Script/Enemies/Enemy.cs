@@ -5,37 +5,21 @@ using UnityEngine.AI;
 
 public abstract class Enemy : MonoBehaviour
 {
-    protected enum TYPE
-    {
-        CAC,
-        Range
-    }
-
     [SerializeField] protected Animator anim;
     [SerializeField] protected EnemyData ed;
     [SerializeField] protected NavMeshAgent agent;
-    [SerializeField] protected TYPE type;
 
     public Transform target { get; private set; }
     public AIBaseState currentState { get;  protected set; }
-    public AIIdleState idleState { get; protected set; }
-    public AIPatrolState patrolState { get; protected set; }
-    public AIDetectState detectState { get; protected set; }
-    public AIAttackState attackState { get; protected set; }
-    public AIHurtState hurtState { get; protected set; }
-    public AIDeathState deathState { get; protected set; }
+    public AIIdleState idleState { get; protected set; } = new AIIdleState();
+    public AIPatrolState patrolState { get; protected set; } = new AIPatrolState();
+    public AIDetectState detectState { get; protected set; } = new AIDetectState();
+    public AIAttackState attackState { get; protected set; } = new AIAttackState();
+    public AIHurtState hurtState { get; protected set; } = new AIHurtState();
+    public AIDeathState deathState { get; protected set; } = new AIDeathState();
 
     float currentHealth;
     float speed;
-
-    protected virtual void Awake()
-    {
-        idleState = new AIIdleState();
-        patrolState = new AIPatrolState();
-        attackState = new AIAttackState();
-        hurtState = new AIHurtState();
-        deathState = new AIDeathState();
-    }
 
     protected virtual void Start()
     {
