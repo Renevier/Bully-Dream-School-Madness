@@ -36,61 +36,25 @@ public class CharacterController : MonoBehaviour
         playerInput.player.Movement.performed += OnMove;
         playerInput.player.Movement.canceled += OnMove;
 
-        playerInput.player.Jump.performed += OnJump;
-        playerInput.player.Jump.canceled += OnJump;
-
         playerInput.player.Punch.performed += OnPunch;
 
         playerInput.player.Throw.performed += OnThrow;
         playerInput.player.Throw.canceled += OnThrow;
-    }   
-
-    private void OnEnable()
-    {
-        playerInput.Enable();
     }
 
-    void Start()
-    {
-        health = maxHealth;
-    }
+    private void OnEnable() => playerInput.Enable();
 
-    void Update()
-    {
-    }
+    void Start() => health = maxHealth;
 
-    private void FixedUpdate()
-    {
-        transform.position += new Vector3(movement.x * speed * Time.deltaTime, 0f, movement.z * speed * Time.deltaTime);
-    }
+    private void FixedUpdate() => transform.position += new Vector3(movement.x * speed * Time.deltaTime, 0f, movement.z * speed * Time.deltaTime);
 
-    private void OnDisable()
-    {
-        playerInput.Disable();
-    }
+    private void OnDisable() => playerInput.Disable();
 
     private void OnMove(InputAction.CallbackContext ctx)
     {
         movement = new Vector3(ctx.ReadValue<Vector2>().x, 0, ctx.ReadValue<Vector2>().y);
 
         anim.SetBool("isWalking", (movement == Vector3.zero ? false : true));
-    }
-
-    private void OnJump(InputAction.CallbackContext ctx)
-    {
-        isJumping = ctx.ReadValueAsButton(); ;
-
-        kickGo.SetActive(isJumping);
-
-        if (IsGrounded() && isJumping)
-        {
-            rb.AddForce(Vector3.up * jumpForce);
-
-            anim.SetBool("isJumping", true);
-            StartCoroutine(AnimCor("isJumping"));
-        }
-        else if(!IsGrounded())        
-            kickGo.SetActive(false);
     }
 
     private void OnPunch(InputAction.CallbackContext ctx)
@@ -112,10 +76,7 @@ public class CharacterController : MonoBehaviour
         StartCoroutine(AnimCor("isThrowing"));
     }
 
-    private bool IsGrounded()
-    {
-        return Physics.CheckCapsule(col.bounds.center, new Vector3(col.bounds.center.x, col.bounds.min.y, col.bounds.center.z), col.radius, groundLayer);
-    }
+    private bool IsGrounded() => Physics.CheckCapsule(col.bounds.center, new Vector3(col.bounds.center.x, col.bounds.min.y, col.bounds.center.z), col.radius, groundLayer);
 
     private void TakeDamage(float _damage)
     {
@@ -138,19 +99,14 @@ public class CharacterController : MonoBehaviour
             anim.SetBool("isAttacking", false);
             fistGo.SetActive(isAttacking);
         }
-        else if (_action == "isJumping")
-        {
-            anim.SetBool("isJumping", false);
-            kickGo.SetActive(false);
-        }
-        else if( _action == "isTouch")
+        else if (_action == "isTouch")
         {
             isTouch = false;
             anim.SetBool("isTouch", false);
         }
-        else if (_action == "isThrowing")
-        {
-            anim.SetBool("isThrowing", false);
-        }
+        //else if (_action == "isThrowing")
+        //{
+        //    anim.SetBool("isThrowing", false);
+        //}
     }
 }
