@@ -632,6 +632,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 4811291826582597675, guid: 0d9f7c0344daaac4c950d6e7b31a84d5,
         type: 3}
+      propertyPath: vCam
+      value: 
+      objectReference: {fileID: 2121472408}
+    - target: {fileID: 4811291826582597675, guid: 0d9f7c0344daaac4c950d6e7b31a84d5,
+        type: 3}
       propertyPath: speed
       value: 3
       objectReference: {fileID: 0}

@@ -7,14 +7,14 @@ using UnityEngine.InputSystem;
 public class CharacterController : MonoBehaviour
 {
     [SerializeField] Animator anim = null;
-    [SerializeField] CapsuleCollider col = null;
+    [SerializeField] Cinemachine.CinemachineVirtualCamera vCam = null;
 
     [Header("Stats")]
     [SerializeField] float health = 0f;
     public float damage = 0f;
     [SerializeField] float speed = 0f;
 
-    [SerializeField] private GameObject kickGo;
+    [SerializeField] private GameObject punchGo;
     [SerializeField] private GameObject proj;
 
     PlayerInput playerInput;
@@ -56,6 +56,7 @@ public class CharacterController : MonoBehaviour
     private void OnPunch(InputAction.CallbackContext ctx)
     {
         isAttacking = true;
+        punchGo.SetActive(isAttacking);
 
         movement = Vector3.zero;
 
