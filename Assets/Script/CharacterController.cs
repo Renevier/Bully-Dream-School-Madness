@@ -7,15 +7,12 @@ using UnityEngine.InputSystem;
 public class CharacterController : MonoBehaviour
 {
     [SerializeField] Animator anim = null;
-    [SerializeField] Rigidbody rb = null;
     [SerializeField] CapsuleCollider col = null;
 
     [Header("Stats")]
     [SerializeField] float health = 0f;
     public float damage = 0f;
     [SerializeField] float speed = 0f;
-    [SerializeField] float jumpForce = 0f;
-    [SerializeField] LayerMask groundLayer;
 
     [SerializeField] private GameObject kickGo;
     [SerializeField] private GameObject proj;
@@ -75,8 +72,6 @@ public class CharacterController : MonoBehaviour
 
         StartCoroutine(AnimCor("isThrowing"));
     }
-
-    private bool IsGrounded() => Physics.CheckCapsule(col.bounds.center, new Vector3(col.bounds.center.x, col.bounds.min.y, col.bounds.center.z), col.radius, groundLayer);
 
     private void TakeDamage(float _damage)
     {
