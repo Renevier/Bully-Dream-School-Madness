@@ -20,10 +20,12 @@ public class CharacterController : MonoBehaviour
     PlayerInput playerInput;
 
     float maxHealth = 10;
-    Vector3 movement;
     bool isAttacking = false;
     bool isTouch = false;
     bool isThrowing = false;
+
+    Vector3 movement;
+    float rotation = 0;
 
     private void Awake()
     {
@@ -36,7 +38,10 @@ public class CharacterController : MonoBehaviour
 
         playerInput.player.Throw.performed += OnThrow;
         playerInput.player.Throw.canceled += OnThrow;
-    }
+
+        playerInput.player.Rotate.performed += OnRotate;
+        playerInput.player.Rotate.canceled += OnRotate;
+    }    
 
     private void OnEnable() => playerInput.Enable();
 
@@ -72,6 +77,11 @@ public class CharacterController : MonoBehaviour
         anim.SetBool("isThrowing", isThrowing);
 
         StartCoroutine(AnimCor("isThrowing"));
+    }
+
+    private void OnRotate(InputAction.CallbackContext ctx)
+    {
+        rotation = ctx.ReadValue<float>();
     }
 
     private void TakeDamage(float _damage)
