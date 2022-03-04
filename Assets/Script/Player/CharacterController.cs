@@ -7,12 +7,13 @@ using UnityEngine.InputSystem;
 public class CharacterController : MonoBehaviour
 {
     [SerializeField] Animator anim = null;
-    [SerializeField] Cinemachine.CinemachineVirtualCamera vCam = null;
+    [SerializeField] Transform transformCameraMain = null;
 
     [Header("Stats")]
     [SerializeField] float health = 0f;
     public float damage = 0f;
     [SerializeField] float speed = 0f;
+    [SerializeField] float rotationSpeed = 4f;
 
     [SerializeField] private GameObject punchGo;
     [SerializeField] private GameObject proj;
@@ -25,7 +26,6 @@ public class CharacterController : MonoBehaviour
     bool isThrowing = false;
 
     Vector3 movement;
-    float rotation = 0;
 
     private void Awake()
     {
@@ -38,14 +38,17 @@ public class CharacterController : MonoBehaviour
 
         playerInput.player.Throw.performed += OnThrow;
         playerInput.player.Throw.canceled += OnThrow;
-
-        playerInput.player.Rotate.performed += OnRotate;
-        playerInput.player.Rotate.canceled += OnRotate;
+        
     }    
 
     private void OnEnable() => playerInput.Enable();
 
     void Start() => health = maxHealth;
+
+    private void Update()
+    {
+        PlayerRotation();
+    }
 
     private void FixedUpdate() => transform.position += new Vector3(movement.x * speed * Time.deltaTime, 0f, movement.z * speed * Time.deltaTime);
 
@@ -54,6 +57,7 @@ public class CharacterController : MonoBehaviour
     private void OnMove(InputAction.CallbackContext ctx)
     {
         movement = new Vector3(ctx.ReadValue<Vector2>().x, 0, ctx.ReadValue<Vector2>().y);
+        movement = transformCameraMain.forward * movement.z + transformCameraMain.right * movement.x;
 
         anim.SetBool("isWalking", movement == Vector3.zero ? false : true);
     }
@@ -77,11 +81,6 @@ public class CharacterController : MonoBehaviour
         anim.SetBool("isThrowing", isThrowing);
 
         StartCoroutine(AnimCor("isThrowing"));
-    }
-
-    private void OnRotate(InputAction.CallbackContext ctx)
-    {
-        rotation = ctx.ReadValue<float>();
     }
 
     private void TakeDamage(float _damage)
@@ -113,5 +112,10 @@ public class CharacterController : MonoBehaviour
         {
             anim.SetBool("isThrowing", false);
         }
+    }
+
+    private void PlayerRotation()
+    {
+        
     }
 }
