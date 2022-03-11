@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,7 +11,6 @@ public class CharacterController : MonoBehaviour
     [SerializeField] float health = 0f;
     public float damage = 0f;
     [SerializeField] float speed = 0f;
-    [SerializeField] float rotationSpeed = 4f;
 
     [SerializeField] private GameObject punchGo;
     [SerializeField] private GameObject proj;
@@ -34,22 +32,28 @@ public class CharacterController : MonoBehaviour
         playerInput.player.Movement.canceled += OnMove;
 
         playerInput.player.Punch.performed += OnPunch;
+        playerInput.player.Punch.canceled += OnPunch;
 
         playerInput.player.Throw.performed += OnThrow;
-        playerInput.player.Throw.canceled += OnThrow;
-        
-    }    
+
+    }
 
     private void OnEnable() => playerInput.Enable();
 
-    void Start() => health = maxHealth;
+    void Start()
+    {
+        health = maxHealth;
+    }
 
     private void Update()
     {
-        PlayerRotation();
+
     }
 
-    private void FixedUpdate() => transform.position += new Vector3(movement.x * speed * Time.deltaTime, 0f, movement.z * speed * Time.deltaTime);
+    private void FixedUpdate()
+    {
+        transform.position += new Vector3(movement.x * speed * Time.deltaTime, 0f, movement.z * speed * Time.deltaTime);
+    }
 
     private void OnDisable() => playerInput.Disable();
 
@@ -62,10 +66,8 @@ public class CharacterController : MonoBehaviour
 
     private void OnPunch(InputAction.CallbackContext ctx)
     {
-        isAttacking = true;
-        punchGo.SetActive(isAttacking);
-
-        movement = Vector3.zero;
+        isAttacking = ctx.ReadValueAsButton();
+        punchGo.SetActive(true);
 
         anim.SetBool("isAttacking", isAttacking);
 
@@ -92,14 +94,16 @@ public class CharacterController : MonoBehaviour
 
     IEnumerator AnimCor(string _action)
     {
-        yield return null;
+        playerInput.player.Movement.Disable();
+
         AnimatorStateInfo animatorStateInfo = anim.GetNextAnimatorStateInfo(0);
         yield return new WaitForSeconds(animatorStateInfo.length / 2 - Time.deltaTime);
 
+        playerInput.player.Movement.Enable();
+
         if (_action == "Punch")
         {
-            isAttacking = false;
-            anim.SetBool("isAttacking", false);
+            punchGo.SetActive(false);
         }
         else if (_action == "isTouch")
         {
@@ -110,10 +114,5 @@ public class CharacterController : MonoBehaviour
         {
             anim.SetBool("isThrowing", false);
         }
-    }
-
-    private void PlayerRotation()
-    {
-        
     }
 }
