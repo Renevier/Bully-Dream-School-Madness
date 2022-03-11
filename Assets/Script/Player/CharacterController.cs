@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 public class CharacterController : MonoBehaviour
 {
     [SerializeField] Animator anim = null;
-    [SerializeField] Transform transformCameraMain = null;
 
     [Header("Stats")]
     [SerializeField] float health = 0f;
@@ -57,7 +56,6 @@ public class CharacterController : MonoBehaviour
     private void OnMove(InputAction.CallbackContext ctx)
     {
         movement = new Vector3(ctx.ReadValue<Vector2>().x, 0, ctx.ReadValue<Vector2>().y);
-        movement = transformCameraMain.forward * movement.z + transformCameraMain.right * movement.x;
 
         anim.SetBool("isWalking", movement == Vector3.zero ? false : true);
     }
