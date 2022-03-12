@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-    [SerializeField] protected Animator anim;
-    [SerializeField] protected EnemyData ed;
-    [SerializeField] protected NavMeshAgent agent;
+    [SerializeField] Animator anim;
+    [SerializeField] EnemyData ed;
+    [SerializeField] NavMeshAgent agent;
+    [SerializeField] private PlayerController player;
 
     public Transform target { get; private set; }
     public AIBaseState currentState { get;  protected set; }
@@ -23,7 +24,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Start()
     {
-        target = FindObjectOfType<CharacterController>().transform;
+        target = FindObjectOfType<PlayerController>().transform;
 
         currentState = idleState;
         currentState.EnterState(this);
@@ -44,4 +45,5 @@ public abstract class Enemy : MonoBehaviour
     public Animator GetAnim() => anim;
     public EnemyData GetEnemyData() => ed;
     public NavMeshAgent GetAgent() => agent;
+    public PlayerController GetPlayer() => player;
 }

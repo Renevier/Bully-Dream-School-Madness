@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PunchTriggerScipt : MonoBehaviour
 {
-    [SerializeField] private CharacterController player;
+    [SerializeField] private PlayerController player;
 
     private void OnTriggerEnter(Collider other)
     {

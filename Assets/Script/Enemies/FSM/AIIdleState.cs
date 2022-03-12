@@ -11,9 +11,10 @@ public class AIIdleState : AIBaseState
 
     public override void UpdateState(Enemy AI)
     {
-        if (HasDetected(AI))
-            AI.SwitchState(AI.detectState);
-        else
-            AI.SwitchState(AI.patrolState);
+        AI.GetAgent().SetDestination(AI.GetPlayer().transform.position);
+        //if (HasDetected(AI))
+        //    AI.SwitchState(AI.detectState);
+        //else
+        //    AI.SwitchState(AI.patrolState);
     }
 }
