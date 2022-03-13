@@ -71,6 +71,8 @@ public class PlayerController : MonoBehaviour
         isAttacking = ctx.ReadValueAsButton();
         punchGo.SetActive(true);
 
+        movement = Vector3.zero;
+
         anim.SetBool("isAttacking", isAttacking);
 
         StartCoroutine(AnimCor("Punch"));
@@ -81,6 +83,8 @@ public class PlayerController : MonoBehaviour
     {
         isThrowing = ctx.ReadValueAsButton();
         anim.SetBool("isThrowing", isThrowing);
+
+        movement = Vector3.zero;
 
         StartCoroutine(AnimCor("isThrowing"));
     }

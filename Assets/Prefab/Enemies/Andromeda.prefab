@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 453614351188112299}
   - component: {fileID: 5780173134042117649}
   - component: {fileID: 335172894830062981}
-  - component: {fileID: 3260564888792588044}
   m_Layer: 0
   m_Name: Andromeda
   m_TagString: Untagged
@@ -28,9 +27,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7999147614926803991}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.17334896, y: 1.5155001, z: -0.22913933}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8498955652305283069}
   m_Father: {fileID: 0}
@@ -77,24 +76,9 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3260564888792588044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7999147614926803991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b12b616d896f7b645bbb0f678cc9adb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 2527214241166507399}
-  ed: {fileID: 11400000, guid: 94b8140cab6ecf5408c1db980b4ddf59, type: 2}
-  agent: {fileID: 335172894830062981}
 --- !u!1001 &8248591617725366294
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -184,17 +168,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: e368c12f61ce2cf4e9ed4855b34b319a,
         type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 0e7a4d124e010d747aa44cc440ae629e, type: 3}
+    - target: {fileID: 5866666021909216657, guid: e368c12f61ce2cf4e9ed4855b34b319a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: e368c12f61ce2cf4e9ed4855b34b319a,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 682bbd67cbffba5439ffea5923f379b4, type: 2}
+    - target: {fileID: 5866666021909216657, guid: e368c12f61ce2cf4e9ed4855b34b319a,
+        type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e368c12f61ce2cf4e9ed4855b34b319a, type: 3}
---- !u!95 &2527214241166507399 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: e368c12f61ce2cf4e9ed4855b34b319a,
-    type: 3}
-  m_PrefabInstance: {fileID: 8248591617725366294}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8498955652305283069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e368c12f61ce2cf4e9ed4855b34b319a,

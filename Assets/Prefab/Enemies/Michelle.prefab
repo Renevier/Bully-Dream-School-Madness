@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5473308785233586714}
   - component: {fileID: 6070724768542925604}
   - component: {fileID: 2269333364134317217}
-  - component: {fileID: 6435206266744721804}
   m_Layer: 0
   m_Name: Michelle
   m_TagString: Untagged
@@ -28,9 +27,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2258079900832510537}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6879463, y: 1.5241084, z: -0.0040955544}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1613443700445615551}
   m_Father: {fileID: 0}
@@ -77,24 +76,9 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6435206266744721804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2258079900832510537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b12b616d896f7b645bbb0f678cc9adb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 4648900826698010565}
-  ed: {fileID: 0}
-  agent: {fileID: 2269333364134317217}
 --- !u!1001 &1292149373036819028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -164,20 +148,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 9ab7f0d0491aa8e4f89dfd4293e0133b,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 9ab7f0d0491aa8e4f89dfd4293e0133b,
+        type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 8e3d28de10c4a7548941d266caf221b4, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 9ab7f0d0491aa8e4f89dfd4293e0133b,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ab7f0d0491aa8e4f89dfd4293e0133b, type: 3}
 --- !u!4 &1613443700445615551 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9ab7f0d0491aa8e4f89dfd4293e0133b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1292149373036819028}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &4648900826698010565 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 9ab7f0d0491aa8e4f89dfd4293e0133b,
     type: 3}
   m_PrefabInstance: {fileID: 1292149373036819028}
   m_PrefabAsset: {fileID: 0}
