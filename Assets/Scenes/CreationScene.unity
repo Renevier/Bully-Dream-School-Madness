@@ -2764,7 +2764,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188703814}
-  m_LocalRotation: {x: 0.02912532, y: 0.00000001740007, z: -5.0699767e-10, w: 0.9995758}
+  m_LocalRotation: {x: 0.029125318, y: 0.000000017299639, z: -5.0407145e-10, w: 0.9995758}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4848,7 +4848,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 271652210}
-  m_LocalRotation: {x: 0.06370128, y: 0.0000000043263473, z: -2.7188712e-10, w: 0.99796903}
+  m_LocalRotation: {x: 0.06370128, y: -0.000000004318564, z: 2.7236352e-10, w: 0.99796903}
   m_LocalPosition: {x: 0.1800003, y: -1.4000001, z: 2.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8697,7 +8697,7 @@ MonoBehaviour:
   - {fileID: 1576114026}
   - {fileID: 715119778}
   maxEnemies: 250
-  timeBeetweenSpawn: 5
+  timeBeetweenSpawn: 1
 --- !u!1 &533911545
 GameObject:
   m_ObjectHideFlags: 0
@@ -15522,7 +15522,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025507822}
-  m_LocalRotation: {x: 0.06370128, y: 0.000000004292858, z: -2.7401711e-10, w: 0.99796903}
+  m_LocalRotation: {x: 0.06370128, y: -0.00000000429286, z: 2.7401723e-10, w: 0.99796903}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22124,9 +22124,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 7999147614926803991, guid: 08dbfe28a6276cb43ae3db07e72665f8, type: 3}
   - {fileID: 3725432206896829793, guid: 809d9a10061ae7445be7c0c6eb81a48f, type: 3}
   - {fileID: 2258079900832510537, guid: 47e7069a701b1474a9650fbd30e86895, type: 3}
+  waypoints: []
 --- !u!4 &1467769587
 Transform:
   m_ObjectHideFlags: 0
