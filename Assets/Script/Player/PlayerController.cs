@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     Vector3 movement;
     float rotationFactorPerFrame = 15.0f;
+    private bool isPause;
 
     private void Awake()
     {
@@ -45,13 +46,30 @@ public class PlayerController : MonoBehaviour
         playerInput.player.Jump.performed += OnJump;
         playerInput.player.Jump.canceled += OnJump;
 
+        playerInput.player.Pause.performed += OnPause;
+
+    }
+
+    private void OnPause(InputAction.CallbackContext obj)
+    {
+        if (isPause)
+        {
+            isPause = false;
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            isPause = true;
+            Time.timeScale = 1.0f;
+        }
+
     }
 
     private void OnJump(InputAction.CallbackContext ctx)
     {
         isJumping = ctx.ReadValueAsButton();
 
-        if(isJumping)
+        if (isJumping)
         {
             rb.AddForce(Vector3.up * jumpForce);
             anim.SetTrigger("isJumping");
