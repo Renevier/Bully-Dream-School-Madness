@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5473308785233586714}
   - component: {fileID: 6070724768542925604}
   - component: {fileID: 2269333364134317217}
+  - component: {fileID: 2540141701163135759}
   m_Layer: 0
   m_Name: Michelle
   m_TagString: Untagged
@@ -79,6 +80,22 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2540141701163135759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2258079900832510537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3c843f40701504582bd1ae092eeae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 4648900826698010565}
+  ed: {fileID: 11400000, guid: 94b8140cab6ecf5408c1db980b4ddf59, type: 2}
+  agent: {fileID: 2269333364134317217}
+  gm: {fileID: 0}
 --- !u!1001 &1292149373036819028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -166,6 +183,12 @@ PrefabInstance:
 --- !u!4 &1613443700445615551 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9ab7f0d0491aa8e4f89dfd4293e0133b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1292149373036819028}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4648900826698010565 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 9ab7f0d0491aa8e4f89dfd4293e0133b,
     type: 3}
   m_PrefabInstance: {fileID: 1292149373036819028}
   m_PrefabAsset: {fileID: 0}

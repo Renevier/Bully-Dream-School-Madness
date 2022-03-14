@@ -14,6 +14,8 @@ public class AIDetectState : AIBaseState
 
     public override void UpdateState(Enemy AI)
     {
+        AI.GetAgent().SetDestination(AI.GetGM().GetPlayer().transform.position);
+
         if (Vector3.Distance(AI.transform.position, AI.target.position) <= AI.GetEnemyData().attackDistance)
             AI.SwitchState(AI.attackState);
     }

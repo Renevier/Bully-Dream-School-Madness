@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class AIPatrolState : AIBaseState
 {
     public override void EnterState(Enemy AI)
@@ -10,10 +8,14 @@ public class AIPatrolState : AIBaseState
 
     public override void UpdateState(Enemy AI)
     {
-        if (Vector3.Distance(AI.transform.position, AI.target.position) < AI.GetEnemyData().detectionDistance &&
-            Vector3.Distance(AI.transform.position, AI.target.position) > AI.GetEnemyData().attackDistance)
-            AI.SwitchState(AI.detectState);
-        else if (Vector3.Distance(AI.transform.position, AI.target.position) <= AI.GetEnemyData().attackDistance)
-            AI.SwitchState(AI.attackState);
+        //Si l'ia ne detect pas le player
+        // WandererPatrol();
+        //else
+        // AI.SwitchState(AI.detectState);       
+    }
+
+    private void WandererPatrol()
+    {
+
     }
 }

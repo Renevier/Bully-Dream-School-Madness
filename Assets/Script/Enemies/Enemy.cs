@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] EnemyData ed;
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] private PlayerController player;
+    [SerializeField] GameManager gm;
 
     public Transform target { get; private set; }
     public AIBaseState currentState { get;  protected set; }
@@ -24,7 +24,9 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Start()
     {
-        target = FindObjectOfType<PlayerController>().transform;
+        gm = FindObjectOfType<GameManager>();
+
+        target = gm.GetPlayer().transform;
 
         currentState = idleState;
         currentState.EnterState(this);
@@ -45,5 +47,5 @@ public class Enemy : MonoBehaviour
     public Animator GetAnim() => anim;
     public EnemyData GetEnemyData() => ed;
     public NavMeshAgent GetAgent() => agent;
-    public PlayerController GetPlayer() => player;
+    public GameManager GetGM() => gm;
 }

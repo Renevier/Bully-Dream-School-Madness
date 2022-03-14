@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5761496664350601138}
   - component: {fileID: 3556456864129347978}
   - component: {fileID: 3185026529429183204}
+  - component: {fileID: 8845552379796522079}
   m_Layer: 0
   m_Name: Granny
   m_TagString: Untagged
@@ -79,6 +80,22 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8845552379796522079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3725432206896829793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3c843f40701504582bd1ae092eeae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 7560118601557412682}
+  ed: {fileID: 11400000, guid: 94b8140cab6ecf5408c1db980b4ddf59, type: 2}
+  agent: {fileID: 3185026529429183204}
+  player: {fileID: 0}
 --- !u!1001 &4143446321088935643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -166,6 +183,12 @@ PrefabInstance:
 --- !u!4 &4470600004697510192 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f03878389335ee149bf69b1ac3323d15,
+    type: 3}
+  m_PrefabInstance: {fileID: 4143446321088935643}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7560118601557412682 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: f03878389335ee149bf69b1ac3323d15,
     type: 3}
   m_PrefabInstance: {fileID: 4143446321088935643}
   m_PrefabAsset: {fileID: 0}
