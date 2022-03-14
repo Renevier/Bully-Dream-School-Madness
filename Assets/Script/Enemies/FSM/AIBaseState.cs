@@ -9,11 +9,10 @@ public abstract class AIBaseState : MonoBehaviour
 
     public bool HasDetected(Enemy AI)
     {
-        if(AI.target != null)
+        if (Vector3.Distance(AI.GetAgent().transform.position, AI.GetGM().GetPlayer().transform.position) <= AI.GetEnemyData().GetDetectionDistance())
         {
-            if (Vector3.Dot(AI.transform.forward, AI.target.position - AI.transform.position) > 0 &&
-            Vector3.Distance(AI.GetAgent().transform.position, AI.target.position) <= AI.GetEnemyData().detectionDistance)
-                return true;
+            AI.target = AI.GetGM().GetPlayer().transform;
+            return true;
         }
 
         return false;

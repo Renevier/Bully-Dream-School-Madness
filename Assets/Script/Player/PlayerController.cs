@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,11 +7,13 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] Animator anim = null;
     [SerializeField] Transform cam = null;
+    [SerializeField] Rigidbody rb = null;
 
     [Header("Stats")]
     [SerializeField] float health = 0f;
     public float damage = 0f;
     [SerializeField] float speed = 0f;
+    [SerializeField] float jumpForce = 0f;
 
     [SerializeField] private GameObject punchGo;
     [SerializeField] private GameObject proj;
@@ -21,6 +24,7 @@ public class PlayerController : MonoBehaviour
     bool isAttacking = false;
     bool isTouch = false;
     bool isThrowing = false;
+    bool isJumping = false;
 
     Vector3 movement;
     float rotationFactorPerFrame = 15.0f;
@@ -36,7 +40,22 @@ public class PlayerController : MonoBehaviour
         playerInput.player.Punch.canceled += OnPunch;
 
         playerInput.player.Throw.performed += OnThrow;
+        playerInput.player.Throw.canceled += OnThrow;
 
+        playerInput.player.Jump.performed += OnJump;
+        playerInput.player.Jump.canceled += OnJump;
+
+    }
+
+    private void OnJump(InputAction.CallbackContext ctx)
+    {
+        isJumping = ctx.ReadValueAsButton();
+
+        if(isJumping)
+        {
+            rb.AddForce(Vector3.up * jumpForce);
+            anim.SetTrigger("isJumping");
+        }
     }
 
     private void OnEnable() => playerInput.Enable();
@@ -70,8 +89,6 @@ public class PlayerController : MonoBehaviour
     {
         isAttacking = ctx.ReadValueAsButton();
         punchGo.SetActive(true);
-
-        movement = Vector3.zero;
 
         anim.SetBool("isAttacking", isAttacking);
 
