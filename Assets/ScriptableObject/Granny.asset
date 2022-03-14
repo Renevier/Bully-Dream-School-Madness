@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Granny
   m_EditorClassIdentifier: 
   maxHealth: 10
-  detectionDistance: 0
-  attackDistance: 0
+  speed: 0.7
+  detectionDistance: 5
+  attackDistance: 5
+  walkRadius: 10
