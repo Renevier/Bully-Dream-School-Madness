@@ -7,6 +7,7 @@ public class AIIdleState : AIBaseState
 
     public override void UpdateState(Enemy AI)
     {
+        base.UpdateState(AI);
 
         if (HasDetected(AI))
             AI.SwitchState(AI.detectState);

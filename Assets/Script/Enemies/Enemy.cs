@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,7 +6,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] EnemyData ed;
     [SerializeField] NavMeshAgent agent;
-    GameManager gm;
+    [SerializeField] GameObject coinPrefab;
 
     public Transform target { get; set; }
     public AIBaseState currentState { get; set; }
@@ -20,6 +18,7 @@ public class Enemy : MonoBehaviour
     public AIDeathState deathState { get; set; } = new AIDeathState();
 
     float currentHealth;
+    GameManager gm;
 
     protected virtual void Start()
     {
@@ -31,7 +30,12 @@ public class Enemy : MonoBehaviour
         currentHealth = ed.GetMaxHealth();
     }
 
-    protected void Update() => currentState.UpdateState(this);
+    protected void Update()
+    {
+        target = GetGM().GetPlayer().transform;
+
+        currentState.UpdateState(this);
+    }
 
     public void SwitchState(AIBaseState state)
     {
@@ -52,5 +56,7 @@ public class Enemy : MonoBehaviour
     public EnemyData GetEnemyData() => ed;
     public NavMeshAgent GetAgent() => agent;
     public GameManager GetGM() => gm;
+    public float GetCurrentLife() => currentHealth;
+    public GameObject GetCoinPrefab() => coinPrefab;
     public void SetSpeed(float speed) => agent.speed = speed;
 }

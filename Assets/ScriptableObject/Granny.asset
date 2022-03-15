@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b7247d4c9b6b84887d2dc10d62fe5c, type: 3}
   m_Name: Granny
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 1
   speed: 0.7
-  detectionDistance: 5
-  attackDistance: 5
+  detectionDistance: 0
+  attackDistance: 0
   walkRadius: 10
