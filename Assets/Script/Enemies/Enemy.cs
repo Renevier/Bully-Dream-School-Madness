@@ -31,9 +31,7 @@ public class Enemy : MonoBehaviour
     }
 
     protected void Update()
-    {
-        target = GetGM().GetPlayer().transform;
-
+    {   
         currentState.UpdateState(this);
     }
 
