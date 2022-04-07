@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
         currentState.EnterState(this);
 
         currentHealth = ed.GetMaxHealth();
+        
     }
 
     protected void Update()

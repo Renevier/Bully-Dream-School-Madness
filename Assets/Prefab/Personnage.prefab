@@ -219,6 +219,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   rb: {fileID: 4811291826582597674}
   playerData: {fileID: 11400000, guid: d7a46b7f626dd954eae1a8333c96f280, type: 2}
+  anim: {fileID: 0}
   punchGo: {fileID: 8704520625494954866}
   initPunchPos: {fileID: 5643797603706754147}
 --- !u!1 &6313845825138106000
@@ -442,7 +443,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8704520625494954866}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.3662107, y: 3.4672332, z: 5.671642}

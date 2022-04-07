@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AIDetectState : AIBaseState
 {
-    public override void EnterState(Enemy AI) { }
+    public override void EnterState(Enemy AI) => AI.GetAnim().SetBool("isAttacking", false);
 
     public override void UpdateState(Enemy AI)
     {
