@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PunchTriggerScipt : MonoBehaviour
@@ -11,7 +9,7 @@ public class PunchTriggerScipt : MonoBehaviour
         if(other.gameObject.CompareTag("Enemy"))
         {
             Enemy enemyGo = other.gameObject.GetComponent<Enemy>();
-            enemyGo.TakeDamage(player.damage);
+            enemyGo.TakeDamage(player.GetPlayerData().GetDamages());
         }
     }
 }

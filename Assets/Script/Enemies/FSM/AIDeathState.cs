@@ -4,7 +4,7 @@ public class AIDeathState : AIBaseState
 {
     public override void EnterState(Enemy AI)
     {
-        Instantiate(AI.GetCoinPrefab(), AI.transform.position, Quaternion.identity);
+        Instantiate(AI.GetEnemyData().GetCoin(), AI.transform.position, Quaternion.identity, AI.gameObject.transform);
         Destroy(AI.gameObject);
     }
 

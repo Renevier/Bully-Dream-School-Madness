@@ -7,9 +7,6 @@ public class AIPatrolState : AIBaseState
     {
         if (AI.GetAgent() != null)
             AI.SetSpeed(AI.GetEnemyData().GetSpeed());
-
-        AI.GetAnim().SetBool("isMoving", true);
-
     }
 
     public override void UpdateState(Enemy AI)
@@ -25,7 +22,7 @@ public class AIPatrolState : AIBaseState
 
     private Vector3 WandererPatrol(Enemy AI)
     {
-        Vector3 finalPosition = Vector3.zero;
+        Vector3 finalPosition = AI.transform.position;
         Vector3 randomPosition = Random.insideUnitSphere * AI.GetEnemyData().GetWalkRadius();
         randomPosition += AI.transform.position;
 

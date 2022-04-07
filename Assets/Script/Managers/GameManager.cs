@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    [SerializeField] PlayerController player;
+    [SerializeField] Image healthImg;
+    [SerializeField] Image energyImg;
     [SerializeField] TextMeshProUGUI timerTxt;
     [SerializeField] TextMeshProUGUI coinTxt;
 
@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         coinTxt.text = nbCoins.ToString();
+        healthImg.fillAmount = player.GetCurrentLife() / player.GetPlayerData().GetMaxHealth();
+        energyImg.fillAmount = player.GetCurrentEnergy() / player.GetPlayerData().GetMaxEnergy();
 
         Timer();
     }
@@ -27,5 +29,8 @@ public class GameManager : MonoBehaviour
         timerSecondes += Time.deltaTime;
     }
 
-    public GameObject GetPlayer() => player;
+    public void AddCoin(int _nbCoin) => nbCoins += _nbCoin;
+    public PlayerController GetPlayer() => player;
+
+    public float GetTime() => timerSecondes;
 }

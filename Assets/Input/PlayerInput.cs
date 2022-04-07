@@ -64,15 +64,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""1847ae0a-8cc0-4bc2-9a5d-636ba478ba58"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""4a483e1d-fd34-4da6-9871-bc0fa24b477a"",
@@ -261,28 +252,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""dad8fd8b-598d-41a0-9046-c9a824cdfb02"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""keyboard + mouse"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""93472c7c-89f0-499e-ab4a-76366bfc580f"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""ca133c8a-2515-46c3-b57d-fa1c00e3bd12"",
                     ""path"": ""<Keyboard>/p"",
                     ""interactions"": """",
@@ -342,7 +311,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_player_Punch = m_player.FindAction("Punch", throwIfNotFound: true);
         m_player_Throw = m_player.FindAction("Throw", throwIfNotFound: true);
         m_player_Look = m_player.FindAction("Look", throwIfNotFound: true);
-        m_player_Jump = m_player.FindAction("Jump", throwIfNotFound: true);
         m_player_Pause = m_player.FindAction("Pause", throwIfNotFound: true);
     }
 
@@ -407,7 +375,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_player_Punch;
     private readonly InputAction m_player_Throw;
     private readonly InputAction m_player_Look;
-    private readonly InputAction m_player_Jump;
     private readonly InputAction m_player_Pause;
     public struct PlayerActions
     {
@@ -417,7 +384,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Punch => m_Wrapper.m_player_Punch;
         public InputAction @Throw => m_Wrapper.m_player_Throw;
         public InputAction @Look => m_Wrapper.m_player_Look;
-        public InputAction @Jump => m_Wrapper.m_player_Jump;
         public InputAction @Pause => m_Wrapper.m_player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_player; }
         public void Enable() { Get().Enable(); }
@@ -440,9 +406,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
-                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
@@ -462,9 +425,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
@@ -496,7 +456,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnPunch(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
     }
 }

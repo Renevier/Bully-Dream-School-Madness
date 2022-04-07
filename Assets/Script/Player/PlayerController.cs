@@ -1,33 +1,27 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] Animator anim = null;
     [SerializeField] Transform cam = null;
     [SerializeField] Rigidbody rb = null;
+    [SerializeField] PlayerData playerData = null;
+    [SerializeField] Animator anim = null;
 
-    [Header("Stats")]
-    [SerializeField] float health = 0f;
-    public float damage = 0f;
-    [SerializeField] float speed = 0f;
-    [SerializeField] float jumpForce = 0f;
-
+    [Header("Punch")]
     [SerializeField] private GameObject punchGo;
-    [SerializeField] private GameObject proj;
+    [SerializeField] private Transform initPunchPos;
 
     PlayerInput playerInput;
 
-    float maxHealth = 10;
+    float health = 0f;
+    float energy = 0f;
+
     bool isAttacking = false;
     bool isTouch = false;
     bool isThrowing = false;
-    bool isJumping = false;
 
-    Vector3 movement;
-    float rotationFactorPerFrame = 15.0f;
     private bool isPause;
 
     private void Awake()
@@ -42,9 +36,6 @@ public class PlayerController : MonoBehaviour
 
         playerInput.player.Throw.performed += OnThrow;
         playerInput.player.Throw.canceled += OnThrow;
-
-        playerInput.player.Jump.performed += OnJump;
-        playerInput.player.Jump.canceled += OnJump;
 
         playerInput.player.Pause.performed += OnPause;
 
@@ -65,63 +56,56 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void OnJump(InputAction.CallbackContext ctx)
-    {
-        isJumping = ctx.ReadValueAsButton();
-
-        if (isJumping)
-        {
-            rb.AddForce(Vector3.up * jumpForce);
-            anim.SetTrigger("isJumping");
-        }
-    }
-
     private void OnEnable() => playerInput.Enable();
 
     void Start()
     {
-        health = maxHealth;
+        health = playerData.GetMaxHealth();
+        energy = playerData.GetMaxEnergy();
     }
 
     private void Update()
     {
+        anim.SetBool("isIdle", playerData.movement == Vector3.zero && !isAttacking && !isThrowing && !isTouch);
+
+        Mathf.Clamp(health, 0, playerData.GetMaxHealth());
+
         PlayerRotation();
+
+        if (isAttacking)
+            energy -= playerData.GetEnergyLost() * Time.deltaTime;
+        else
+            energy += playerData.GetEnergyWin() * Time.deltaTime;
+
+        energy = Mathf.Clamp(energy, 0, playerData.GetMaxEnergy());
     }
 
     private void FixedUpdate()
     {
-        transform.position += movement * speed * Time.deltaTime;
+        transform.position += playerData.movement * playerData.GetSpeed() * Time.deltaTime;
     }
 
     private void OnDisable() => playerInput.Disable();
 
     private void OnMove(InputAction.CallbackContext ctx)
     {
-        movement = new Vector3(ctx.ReadValue<Vector2>().x, 0, ctx.ReadValue<Vector2>().y);
-        movement = movement.x * cam.right.normalized + movement.z * cam.forward.normalized;
-
-        anim.SetBool("isWalking", movement == Vector3.zero ? false : true);
+        playerData.movement = new Vector3(ctx.ReadValue<Vector2>().x, 0, ctx.ReadValue<Vector2>().y);
+        playerData.movement = playerData.movement.x * cam.right.normalized + playerData.movement.z * cam.forward.normalized;
     }
 
     private void OnPunch(InputAction.CallbackContext ctx)
     {
         isAttacking = ctx.ReadValueAsButton();
-        punchGo.SetActive(true);
 
-        anim.SetBool("isAttacking", isAttacking);
-
-        StartCoroutine(AnimCor("Punch"));
-
+        if (isAttacking)
+            punchGo.transform.position = initPunchPos.position + transform.forward * playerData.GetPunchDistance();
+        else
+            punchGo.transform.position = initPunchPos.position;
     }
 
     private void OnThrow(InputAction.CallbackContext ctx)
     {
         isThrowing = ctx.ReadValueAsButton();
-        anim.SetBool("isThrowing", isThrowing);
-
-        movement = Vector3.zero;
-
-        StartCoroutine(AnimCor("isThrowing"));
     }
 
     private void TakeDamage(float _damage)
@@ -129,49 +113,51 @@ public class PlayerController : MonoBehaviour
         health -= _damage;
 
         isTouch = true;
-        anim.SetBool("isTouch", true);
-        StartCoroutine(AnimCor("isTouch"));
     }
 
-    IEnumerator AnimCor(string _action)
-    {
-        playerInput.player.Movement.Disable();
+    //IEnumerator AnimCor(string _action)
+    //{
+    //    playerInput.player.Movement.Disable();
 
-        AnimatorStateInfo animatorStateInfo = anim.GetNextAnimatorStateInfo(0);
-        yield return new WaitForSeconds(animatorStateInfo.length / 2 - Time.deltaTime);
+    //    AnimatorStateInfo animatorStateInfo = anim.GetNextAnimatorStateInfo(0);
+    //    yield return new WaitForSeconds(animatorStateInfo.length / 2 - Time.deltaTime);
 
-        playerInput.player.Movement.Enable();
+    //    playerInput.player.Movement.Enable();
 
-        if (_action == "Punch")
-        {
-            punchGo.SetActive(false);
-        }
-        else if (_action == "isTouch")
-        {
-            isTouch = false;
-            anim.SetBool("isTouch", false);
-        }
-        else if (_action == "isThrowing")
-        {
-            anim.SetBool("isThrowing", false);
-        }
-    }
+    //    if (_action == "Punch")
+    //    {
+    //        punchGo.SetActive(false);
+    //    }
+    //    else if (_action == "isTouch")
+    //    {
+    //        isTouch = false;
+    //        anim.SetBool("isTouch", false);
+    //    }
+    //    else if (_action == "isThrowing")
+    //    {
+    //        anim.SetBool("isThrowing", false);
+    //    }
+    //}
 
     private void PlayerRotation()
     {
         Vector3 positionToLookAt;
 
-        positionToLookAt.x = movement.x;
+        positionToLookAt.x = playerData.movement.x;
         positionToLookAt.y = 0.0f;
-        positionToLookAt.z = movement.z;
+        positionToLookAt.z = playerData.movement.z;
 
         Quaternion currentRotation = transform.rotation;
 
-        if (movement != Vector3.zero)
+        if (playerData.movement != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
-            transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationFactorPerFrame * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, playerData.rotationFactorPerFrame * Time.deltaTime);
 
         }
     }
+
+    public PlayerData GetPlayerData() => playerData;
+    public float GetCurrentLife() => health;
+    public float GetCurrentEnergy() => energy;
 }

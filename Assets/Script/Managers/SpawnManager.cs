@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
@@ -34,7 +33,7 @@ public class SpawnManager : MonoBehaviour
         Vector3 newRotation = new Vector3(0, Random.Range(0, 360), 0);
 
         timer = 0;
-        Instantiate(em.GetEnemies()[Random.Range(0, em.GetEnemies().Length)], spawner.position, Quaternion.Euler(newRotation));
+        Instantiate(em.GetEnemie(), spawner.position, Quaternion.Euler(newRotation));
         nbEnemies++;
     }
 }

@@ -6,16 +6,15 @@ public class Enemy : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] EnemyData ed;
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] GameObject coinPrefab;
 
     public Transform target { get; set; }
-    public AIBaseState currentState { get; set; }
-    public AIIdleState idleState { get; set; } = new AIIdleState();
-    public AIPatrolState patrolState { get; set; } = new AIPatrolState();
-    public AIDetectState detectState { get; set; } = new AIDetectState();
-    public AIAttackState attackState { get; set; } = new AIAttackState();
-    public AIHurtState hurtState { get; set; } = new AIHurtState();
-    public AIDeathState deathState { get; set; } = new AIDeathState();
+    public AIBaseState currentState { get; private set; }
+    public AIIdleState idleState { get; private set; } = new AIIdleState();
+    public AIPatrolState patrolState { get; private set; } = new AIPatrolState();
+    public AIDetectState detectState { get; private set; } = new AIDetectState();
+    public AIAttackState attackState { get; private set; } = new AIAttackState();
+    public AIHurtState hurtState { get; private set; } = new AIHurtState();
+    public AIDeathState deathState { get; private set; } = new AIDeathState();
 
     float currentHealth;
     GameManager gm;
@@ -55,6 +54,5 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent GetAgent() => agent;
     public GameManager GetGM() => gm;
     public float GetCurrentLife() => currentHealth;
-    public GameObject GetCoinPrefab() => coinPrefab;
     public void SetSpeed(float speed) => agent.speed = speed;
 }

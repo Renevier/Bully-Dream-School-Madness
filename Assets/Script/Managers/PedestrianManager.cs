@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PedestrianManager : MonoBehaviour
 {
-    [SerializeField] GameObject[] enemies;
+    [SerializeField] GameObject enemie;
     [SerializeField] GameObject[] waypoints;
 
-    public GameObject[] GetEnemies() => enemies; 
+    public GameObject GetEnemie() => enemie; 
     public GameObject[] GetWaypoints() => waypoints; 
 
 }

@@ -13,9 +13,13 @@ public class EnemyData : ScriptableObject
     [Header("Patrol")]
     [SerializeField, Range(0, 10)] private float walkRadius;
 
+    [SerializeField] private GameObject coin;
+
     public float GetMaxHealth() => maxHealth;
     public float GetSpeed() => speed;
     public float GetDetectionDistance() => detectionDistance;
     public float GetAttackDistance() => attackDistance;
     public float GetWalkRadius() => walkRadius;
+    public GameObject GetCoin() => coin;
+
 }
