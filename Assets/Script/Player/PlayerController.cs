@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -41,20 +42,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void OnPause(InputAction.CallbackContext obj)
-    {
-        if (isPause)
-        {
-            isPause = false;
-            Time.timeScale = 0.0f;
-        }
-        else
-        {
-            isPause = true;
-            Time.timeScale = 1.0f;
-        }
-
-    }
+    private void OnPause(InputAction.CallbackContext obj) => Time.timeScale = 0.0f;
 
     private void OnEnable() => playerInput.Enable();
 
@@ -72,13 +60,11 @@ public class PlayerController : MonoBehaviour
 
         PlayerRotation();
 
-        if (isAttacking)
-            energy -= playerData.GetEnergyLost() * Time.deltaTime;
-        else
-            energy += playerData.GetEnergyWin() * Time.deltaTime;
-
-        energy = Mathf.Clamp(energy, 0, playerData.GetMaxEnergy());
+        ManageEnergy();
+        
     }
+
+   
 
     private void FixedUpdate()
     {
@@ -154,6 +140,21 @@ public class PlayerController : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
             transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, playerData.rotationFactorPerFrame * Time.deltaTime);
 
+        }
+    }
+    private void ManageEnergy()
+    {
+        if (isAttacking)
+            energy -= playerData.GetEnergyLost() * Time.deltaTime;
+        else
+            energy += playerData.GetEnergyWin() * Time.deltaTime;
+
+        energy = Mathf.Clamp(energy, 0, playerData.GetMaxEnergy());
+
+        if (energy <= 0)
+        {
+            punchGo.transform.position = initPunchPos.position;
+            isAttacking = false;
         }
     }
 

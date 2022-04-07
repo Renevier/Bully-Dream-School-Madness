@@ -18,8 +18,5 @@ public class MenuScript : MonoBehaviour
         skillTreeParent.SetActive(false);
     }
 
-    public void LaunchGame()
-    {
-        SceneManager.LoadScene("CreationScene");
-    }
+    public void LaunchGame() => SceneManager.LoadScene("CreationScene");
 }
