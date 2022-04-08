@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Dypsloom/DypThePenguin/Demo/Demo.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/MenuScene.unity
+    guid: 3c36557e07ae74c458700b6caac294b6
+  - enabled: 1
+    path: Assets/Scenes/CreationScene.unity
+    guid: a086d5161ebf65848b9690b38218422b
   m_configObjects: {}

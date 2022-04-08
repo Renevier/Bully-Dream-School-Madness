@@ -1,19 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class AIBaseState : MonoBehaviour
 {
     public abstract void EnterState(Enemy AI);
-    public abstract void UpdateState(Enemy AI);
+    public virtual void UpdateState(Enemy AI)
+    {
+        if (AI.GetCurrentLife() <= 0)
+            AI.SwitchState(AI.deathState);
+    }
 
     public bool HasDetected(Enemy AI)
     {
-        if(AI.target != null)
+        if (Vector3.Distance(AI.GetAgent().transform.position, AI.GetGM().GetPlayer().transform.position) <= AI.GetEnemyData().GetDetectionDistance())
         {
-            if (Vector3.Dot(AI.transform.forward, AI.target.position - AI.transform.position) > 0 &&
-            Vector3.Distance(AI.GetAgent().transform.position, AI.target.position) <= AI.GetEnemyData().detectionDistance)
-                return true;
+            AI.target = AI.GetGM().GetPlayer().transform;
+            return true;
         }
 
         return false;

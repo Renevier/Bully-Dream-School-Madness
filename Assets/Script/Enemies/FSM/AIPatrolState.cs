@@ -1,21 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AIPatrolState : AIBaseState
 {
     public override void EnterState(Enemy AI)
     {
-        AI.GetAnim().SetBool("isMoving", true);
-        AI.GetAnim().SetBool("isPatrolling", true);
+        if (AI.GetAgent() != null)
+            AI.SetSpeed(AI.GetEnemyData().GetSpeed());
     }
 
     public override void UpdateState(Enemy AI)
     {
-        if (Vector3.Distance(AI.transform.position, AI.target.position) < AI.GetEnemyData().detectionDistance &&
-            Vector3.Distance(AI.transform.position, AI.target.position) > AI.GetEnemyData().attackDistance)
+        base.UpdateState(AI);
+
+        if (AI.GetAgent() != null && AI.GetAgent().remainingDistance <= AI.GetAgent().stoppingDistance)
+            AI.GetAgent().SetDestination(WandererPatrol(AI));
+
+        if (HasDetected(AI))
             AI.SwitchState(AI.detectState);
-        else if (Vector3.Distance(AI.transform.position, AI.target.position) <= AI.GetEnemyData().attackDistance)
-            AI.SwitchState(AI.attackState);
+    }
+
+    private Vector3 WandererPatrol(Enemy AI)
+    {
+        Vector3 finalPosition = AI.transform.position;
+        Vector3 randomPosition = Random.insideUnitSphere * AI.GetEnemyData().GetWalkRadius();
+        randomPosition += AI.transform.position;
+
+        if (NavMesh.SamplePosition(randomPosition, out NavMeshHit hit, AI.GetEnemyData().GetWalkRadius(), 1))
+            finalPosition = hit.position;
+
+        return finalPosition;
     }
 }
