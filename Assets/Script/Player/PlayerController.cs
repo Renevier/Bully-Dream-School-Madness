@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -61,14 +59,8 @@ public class PlayerController : MonoBehaviour
         PlayerRotation();
 
         ManageEnergy();
-        
-    }
 
-   
-
-    private void FixedUpdate()
-    {
-        transform.position += playerData.movement * playerData.GetSpeed() * Time.deltaTime;
+        rb.velocity = new Vector3(playerData.movement.x * playerData.GetSpeed(), rb.velocity.y, playerData.movement.z * playerData.GetSpeed());
     }
 
     private void OnDisable() => playerInput.Disable();
@@ -84,7 +76,7 @@ public class PlayerController : MonoBehaviour
         isAttacking = ctx.ReadValueAsButton();
 
         if (isAttacking)
-            punchGo.transform.position = initPunchPos.position + transform.forward * playerData.GetPunchDistance();
+            punchGo.transform.position = Vector3.Lerp(transform.position, transform.position + transform.forward * playerData.GetPunchDistance(), .1f);
         else
             punchGo.transform.position = initPunchPos.position;
     }
@@ -160,5 +152,10 @@ public class PlayerController : MonoBehaviour
 
     public PlayerData GetPlayerData() => playerData;
     public float GetCurrentLife() => health;
+    public void Heal(float _heal)
+    {
+        health += _heal;
+    }
     public float GetCurrentEnergy() => energy;
+    public Vector3 GetInitPunchPos() => initPunchPos.position;
 }

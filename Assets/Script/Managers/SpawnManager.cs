@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -33,7 +34,12 @@ public class SpawnManager : MonoBehaviour
         Vector3 newRotation = new Vector3(0, Random.Range(0, 360), 0);
 
         timer = 0;
-        Instantiate(em.GetEnemie(), spawner.position, Quaternion.Euler(newRotation));
+        NavMeshAgent agent = Instantiate(em.GetEnemie());
+        if(NavMesh.SamplePosition(spawner.transform.position, out NavMeshHit hit, 5f, -1))
+        {
+            agent.Warp(hit.position);
+        }
+        agent.transform.rotation = spawner.rotation;
         nbEnemies++;
     }
 }

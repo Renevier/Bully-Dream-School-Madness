@@ -9,8 +9,8 @@ public class AIAttackState : AIBaseState
         base.UpdateState(AI);
 
         AI.transform.LookAt(new Vector3(AI.target.position.x, AI.transform.position.y, AI.target.position.z));
-
-        if (Vector3.Distance(AI.transform.position, AI.target.position) >= AI.GetEnemyData().GetAttackDistance())
+        float attackDist = AI.GetEnemyData().GetAttackDistance();
+        if ((AI.transform.position- AI.target.position).sqrMagnitude >= attackDist * attackDist)
             AI.SwitchState(AI.detectState);
     }
 }

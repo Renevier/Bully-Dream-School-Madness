@@ -12,7 +12,7 @@ public class PlayerData : ScriptableObject
 
     [Header("Degats")]
     [SerializeField, Range(0, 100)] private float damage = 0f;
-    [SerializeField, Range(.1f, .5f)] private float punchDistance = 0f;
+    [SerializeField, Range(0, 100)] private float punchDistance = 0f;
     [SerializeField] private GameObject proj;
 
     [SerializeField, Range(0, 5)] private float speed = 0f;

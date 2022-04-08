@@ -14,7 +14,6 @@ public class Enemy : MonoBehaviour
     public AIDetectState detectState { get; private set; } = new AIDetectState();
     public AIAttackState attackState { get; private set; } = new AIAttackState();
     public AIHurtState hurtState { get; private set; } = new AIHurtState();
-    public AIDeathState deathState { get; private set; } = new AIDeathState();
 
     float currentHealth;
     GameManager gm;

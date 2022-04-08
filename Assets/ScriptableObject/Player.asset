@@ -16,9 +16,9 @@ MonoBehaviour:
   maxEnergy: 10
   energyWin: 1
   energyLost: 5
-  damage: 0
+  damage: 40
   punchDistance: 0.5
   proj: {fileID: 3002583944949095727, guid: 0f4938c79f9583b49807a3833a7f68bb, type: 3}
   speed: 2
-  movement: {x: 0, y: 0, z: 0}
+  movement: {x: 0, y: 0, z: -0}
   rotationFactorPerFrame: 15

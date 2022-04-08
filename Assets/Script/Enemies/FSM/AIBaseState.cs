@@ -6,7 +6,10 @@ public abstract class AIBaseState : MonoBehaviour
     public virtual void UpdateState(Enemy AI)
     {
         if (AI.GetCurrentLife() <= 0)
-            AI.SwitchState(AI.deathState);
+        {
+            Instantiate(AI.GetEnemyData().GetCoin(), AI.transform.position, Quaternion.identity, AI.gameObject.transform);
+            Destroy(AI.gameObject);
+        }
     }
 
     public bool HasDetected(Enemy AI)

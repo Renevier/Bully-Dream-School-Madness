@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PedestrianManager : MonoBehaviour
 {
-    [SerializeField] GameObject enemie;
+    [SerializeField] NavMeshAgent enemie;
     [SerializeField] GameObject[] waypoints;
 
-    public GameObject GetEnemie() => enemie; 
+    public NavMeshAgent GetEnemie() => enemie; 
     public GameObject[] GetWaypoints() => waypoints; 
 
 }

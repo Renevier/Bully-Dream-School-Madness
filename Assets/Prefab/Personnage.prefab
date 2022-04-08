@@ -435,6 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4811291826582597675}
+  col: {fileID: 997977847766439100}
 --- !u!65 &997977847766439100
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -446,8 +447,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.3662107, y: 3.4672332, z: 5.671642}
-  m_Center: {x: -0.4040785, y: 0.28169614, z: 1.7025864}
+  m_Size: {x: 7.5208735, y: 3.4672332, z: 5.6716413}
+  m_Center: {x: 2.173254, y: 0.28169614, z: 1.7025864}
 --- !u!1001 &7706529102511947382
 PrefabInstance:
   m_ObjectHideFlags: 0
