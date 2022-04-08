@@ -11,8 +11,6 @@ public class AIPatrolState : AIBaseState
 
     public override void UpdateState(Enemy AI)
     {
-        base.UpdateState(AI);
-
         if (AI.GetAgent() != null && AI.GetAgent().remainingDistance <= AI.GetAgent().stoppingDistance)
             AI.GetAgent().SetDestination(WandererPatrol(AI));
 

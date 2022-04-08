@@ -26,12 +26,18 @@ public class Enemy : MonoBehaviour
         currentState.EnterState(this);
 
         currentHealth = ed.GetMaxHealth();
-        
+
     }
 
     protected void Update()
-    {   
-        currentState.UpdateState(this);
+    {
+        if (currentHealth <= 0)
+        {
+            Instantiate(ed.GetCoin(), transform.position, Quaternion.identity, gameObject.transform);
+            Destroy(gameObject);
+        }
+        else
+            currentState.UpdateState(this);
     }
 
     public void SwitchState(AIBaseState state)

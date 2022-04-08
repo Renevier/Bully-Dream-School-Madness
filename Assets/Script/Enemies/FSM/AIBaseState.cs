@@ -3,14 +3,7 @@ using UnityEngine;
 public abstract class AIBaseState : MonoBehaviour
 {
     public abstract void EnterState(Enemy AI);
-    public virtual void UpdateState(Enemy AI)
-    {
-        if (AI.GetCurrentLife() <= 0)
-        {
-            Instantiate(AI.GetEnemyData().GetCoin(), AI.transform.position, Quaternion.identity, AI.gameObject.transform);
-            Destroy(AI.gameObject);
-        }
-    }
+    public abstract void UpdateState(Enemy AI);
 
     public bool HasDetected(Enemy AI)
     {

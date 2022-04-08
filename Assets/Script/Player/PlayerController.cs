@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     float health = 0f;
     float energy = 0f;
 
-    bool isAttacking = false;
+    public bool isAttacking { get; private set; } = false;
     bool isTouch = false;
     bool isThrowing = false;
 
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
         isAttacking = ctx.ReadValueAsButton();
 
         if (isAttacking)
-            punchGo.transform.position = Vector3.Lerp(transform.position, transform.position + transform.forward * playerData.GetPunchDistance(), .1f);
+            punchGo.transform.position = Vector3.Lerp(punchGo.transform.position, transform.position + transform.forward * playerData.GetPunchDistance(), 1f);
         else
             punchGo.transform.position = initPunchPos.position;
     }
@@ -136,10 +136,10 @@ public class PlayerController : MonoBehaviour
     }
     private void ManageEnergy()
     {
-        if (isAttacking)
-            energy -= playerData.GetEnergyLost() * Time.deltaTime;
-        else
-            energy += playerData.GetEnergyWin() * Time.deltaTime;
+        //if (isAttacking)
+        //    energy -= playerData.GetEnergyLost() * Time.deltaTime;
+        //else
+        //    energy += playerData.GetEnergyWin() * Time.deltaTime;
 
         energy = Mathf.Clamp(energy, 0, playerData.GetMaxEnergy());
 
